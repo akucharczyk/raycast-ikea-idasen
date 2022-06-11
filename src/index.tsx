@@ -1,14 +1,11 @@
-import { ActionPanel, List, closeMainWindow, Toast, Action, open } from '@raycast/api'
+import { ActionPanel, List, Action } from '@raycast/api'
 import { useEffect, useState } from 'react'
-import { runAppleScript } from 'run-applescript'
+import sitDown from './sit-down'
+import standUp from './stand-up'
 import {
-  appLink,
   BrowserIcon,
-  fileDownload,
   isDeskControllerInstalled,
-  sitDown,
   SitDownIcon,
-  standUp,
   StandUpIcon,
 } from './utils'
 
@@ -23,43 +20,6 @@ export default function Command() {
     getDektopControllerInstalledInfo()
   }, [])
 
-  const callAppleScript = async (script: string) => {
-    const toast = new Toast({
-      title: 'Something went wrong',
-      style: Toast.Style.Animated,
-    })
-
-    try {
-      if (!isInstalled) {
-        toast.title = 'Desk Controller not installed'
-        toast.message =
-          'Install it from: https://github.com/DWilliames/idasen-controller/releases/latest/download/Desk.Controller.app.zip'
-        toast.style = Toast.Style.Failure
-        toast.primaryAction = {
-          title: 'Download',
-          onAction: () => {
-            open(fileDownload)
-            toast.hide()
-          },
-        }
-        toast.secondaryAction = {
-          title: 'Open in Browser',
-          onAction: () => {
-            open(appLink)
-            toast.hide()
-          },
-        }
-        toast.show()
-        return
-      }
-
-      closeMainWindow()
-      await runAppleScript(script)
-    } catch (error) {
-      toast.show()
-    }
-  }
-
   return (
     <List navigationTitle="Ikea Idasen">
       <List.Item
@@ -67,7 +27,7 @@ export default function Command() {
         title="Stand Up"
         actions={
           <ActionPanel>
-            <Action title="StandUp" onAction={() => callAppleScript(standUp)} />
+            <Action title="StandUp" onAction={standUp} />
           </ActionPanel>
         }
       />
@@ -76,7 +36,7 @@ export default function Command() {
         title="Sit Down"
         actions={
           <ActionPanel>
-            <Action title="SitDown" onAction={() => callAppleScript(sitDown)} />
+            <Action title="SitDown" onAction={sitDown} />
           </ActionPanel>
         }
       />
@@ -88,10 +48,10 @@ export default function Command() {
             <Action
               title="SitDown"
               onAction={() => {
-                callAppleScript(sitDown)
+                sitDown()
 
                 setTimeout(() => {
-                  callAppleScript(standUp)
+                  standUp()
                 }, 30 * 60 * 1000)
               }}
             />
