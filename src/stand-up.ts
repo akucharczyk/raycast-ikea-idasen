@@ -4,7 +4,7 @@ import { appLink, fileDownload, isDeskControllerInstalled, standUp } from './uti
 
 export default async function () {
   const toast = new Toast({
-    title: 'Sit Down',
+    title: 'Stand Up',
     style: Toast.Style.Animated,
   })
 
