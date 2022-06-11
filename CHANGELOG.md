@@ -1,3 +1,6 @@
 # raycast-ikea-idasen Changelog
 
-## [Initial Version] - 2022-06-10
+## [New Commands] - 2022-06-11
+- Add action to control your desk
+
+Initial version code
