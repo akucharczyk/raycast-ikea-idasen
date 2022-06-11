@@ -22,7 +22,10 @@
       "title": "Stand Up",
       "subtitle": "Ikea Idasen",
       "description": "Set your Ikea Idasen to stand up position",
-      "keywords": ["stand", "up"],
+      "keywords": [
+        "stand",
+        "up"
+      ],
       "mode": "no-view"
     },
     {
@@ -30,7 +33,10 @@
       "title": "Sit down",
       "subtitle": "Ikea Idasen",
       "description": "Set your Ikea Idasen to sit down position",
-      "keywords": ["sit", "down"],
+      "keywords": [
+        "sit",
+        "down"
+      ],
       "mode": "no-view"
     }
   ],
@@ -53,5 +59,6 @@
     "dev": "ray develop",
     "fix-lint": "ray lint --fix",
     "lint": "ray lint"
-  }
+  },
+  "version": "1.0.0"
 }
